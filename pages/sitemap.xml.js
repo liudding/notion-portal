@@ -22,11 +22,6 @@ export const getServerSideProps = async (ctx) => {
       changefreq: 'daily',
       priority: '0.7'
     }, {
-      loc: `${BLOG.LINK}/feed`,
-      lastmod: new Date().toISOString().split('T')[0],
-      changefreq: 'daily',
-      priority: '0.7'
-    }, {
       loc: `${BLOG.LINK}/search`,
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'daily',

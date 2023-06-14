@@ -29,7 +29,6 @@
     "axios": ">=0.21.1",
     "copy-to-clipboard": "^3.3.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "feed": "^4.2.2",
     "gitalk": "^1.7.2",
     "js-md5": "^0.7.3",
     "localStorage": "^1.0.4",
