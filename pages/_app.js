@@ -1,4 +1,4 @@
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import React, { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
@@ -30,12 +30,12 @@ const GoogleAdsense = dynamic(() => import('@/components/GoogleAdsense'), {
 const MyApp = ({ Component, pageProps }) => {
   // 外部插件
   const externalPlugins = <>
-    {JSON.parse(BLOG.THEME_SWITCH) && <ThemeSwitch />}
-    {JSON.parse(BLOG.DEBUG) && <DebugPanel />}
-    {BLOG.ANALYTICS_ACKEE_TRACKER && <Ackee />}
-    {BLOG.ANALYTICS_GOOGLE_ID && <Gtag />}
-    {JSON.parse(BLOG.ANALYTICS_BUSUANZI_ENABLE) && <Busuanzi />}
-    {BLOG.ADSENSE_GOOGLE_ID && <GoogleAdsense />}
+    {JSON.parse(CONFIG.THEME_SWITCH) && <ThemeSwitch />}
+    {JSON.parse(CONFIG.DEBUG) && <DebugPanel />}
+    {CONFIG.ANALYTICS_ACKEE_TRACKER && <Ackee />}
+    {CONFIG.ANALYTICS_GOOGLE_ID && <Gtag />}
+    {JSON.parse(CONFIG.ANALYTICS_BUSUANZI_ENABLE) && <Busuanzi />}
+    {CONFIG.ADSENSE_GOOGLE_ID && <GoogleAdsense />}
     <ExternalScript />
   </>
 

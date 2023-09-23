@@ -1,41 +1,41 @@
 // pages/sitemap.xml.js
 import { getServerSideSitemap } from 'next-sitemap'
 import { getGlobalNotionData } from '@/lib/notion/getNotionData'
-import BLOG from '@/config'
+import CONFIG from '@/config'
 
 export const getServerSideProps = async (ctx) => {
   const { allPages } = await getGlobalNotionData({ from: 'rss' })
   const defaultFields = [
     {
-      loc: `${BLOG.LINK}`,
+      loc: `${CONFIG.LINK}`,
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'daily',
       priority: '0.7'
     }, {
-      loc: `${BLOG.LINK}/archive`,
+      loc: `${CONFIG.LINK}/archive`,
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'daily',
       priority: '0.7'
     }, {
-      loc: `${BLOG.LINK}/category`,
+      loc: `${CONFIG.LINK}/category`,
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'daily',
       priority: '0.7'
     }, {
-      loc: `${BLOG.LINK}/search`,
+      loc: `${CONFIG.LINK}/search`,
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'daily',
       priority: '0.7'
     }, {
-      loc: `${BLOG.LINK}/tag`,
+      loc: `${CONFIG.LINK}/tag`,
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'daily',
       priority: '0.7'
     }
   ]
-  const postFields = allPages?.filter(p => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)?.map(post => {
+  const postFields = allPages?.filter(p => p.status === CONFIG.NOTION_PROPERTY_NAME.status_publish)?.map(post => {
     return {
-      loc: `${BLOG.LINK}/${post.slug}`,
+      loc: `${CONFIG.LINK}/${post.slug}`,
       lastmod: new Date(post?.date?.start_date || post?.createdTime).toISOString().split('T')[0],
       changefreq: 'daily',
       priority: '0.7'

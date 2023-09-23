@@ -1,7 +1,7 @@
-const BLOG = require('./config')
+const CONFIG = require('./config')
 
 module.exports = {
-  siteUrl: BLOG.LINK,
+  siteUrl: CONFIG.LINK,
   changefreq: 'daily',
   priority: 0.7,
   generateRobotsTxt: true,

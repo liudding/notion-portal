@@ -1,6 +1,6 @@
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import CommonScript from '@/components/CommonScript'
 
 class MyDocument extends Document {
@@ -11,13 +11,13 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang={BLOG.LANG}>
+      <Html lang={CONFIG.LANG}>
         <Head>
           <link rel='icon' href='/favicon.ico' />
           <CommonScript />
         </Head>
 
-        <body className={`${BLOG.FONT_STYLE} font-light bg-day dark:bg-night`}>
+        <body className={`${CONFIG.FONT_STYLE} font-light bg-day dark:bg-night`}>
             <Main />
             <NextScript />
         </body>

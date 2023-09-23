@@ -1,4 +1,4 @@
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import { getGlobalNotionData, getNotionData } from '@/lib/notion/getNotionData'
 import { useGlobal } from '@/lib/global'
 import * as ThemeMap from '@/themes'
@@ -23,7 +23,7 @@ const Page = props => {
 export async function getStaticPaths() {
   const from = 'page-paths'
   const { postCount } = await getGlobalNotionData({ from })
-  const totalPages = Math.ceil(postCount / BLOG.POSTS_PER_PAGE)
+  const totalPages = Math.ceil(postCount / CONFIG.POSTS_PER_PAGE)
   return {
     // remove first page, we 're not gonna handle that.
     paths: Array.from({ length: totalPages - 1 }, (_, i) => ({
@@ -41,17 +41,17 @@ export async function getStaticProps({ params: { page } }) {
 
   delete props.allPages
 
-  const linksCollection = await getNotionData({ from, pageId: BLOG.LINKS_NOTION_PAGE_ID })
-  console.log('=========', BLOG.LINKS_CATEGORY_LEVELS)
-  const categories = formatToGroupTree(linksCollection.collectionData, BLOG.LINKS_CATEGORY_LEVELS, 0)
+  const linksCollection = await getNotionData({ from, pageId: CONFIG.LINKS_NOTION_PAGE_ID })
+  console.log('=========', CONFIG.LINKS_CATEGORY_LEVELS)
+  const categories = formatToGroupTree(linksCollection.collectionData, CONFIG.LINKS_CATEGORY_LEVELS, 0)
   props.links = linksCollection.collectionData
   props.categories = categories
 
-  console.log(categories, '=========', BLOG.LINKS_CATEGORY_LEVELS)
+  console.log(categories, '=========', CONFIG.LINKS_CATEGORY_LEVELS)
 
   return {
     props,
-    revalidate: parseInt(BLOG.NEXT_REVALIDATE_SECOND)
+    revalidate: parseInt(CONFIG.NEXT_REVALIDATE_SECOND)
   }
 }
 

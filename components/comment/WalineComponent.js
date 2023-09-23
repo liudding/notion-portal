@@ -1,6 +1,6 @@
 import React from 'react'
 import { init } from '@waline/client'
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import { useRouter } from 'next/router'
 import '@waline/client/dist/waline.css'
 
@@ -26,8 +26,8 @@ const WalineComponent = (props) => {
       waline = init({
         ...props,
         el: containerRef.current,
-        serverURL: BLOG.COMMENT_WALINE_SERVER_URL,
-        lang: BLOG.lang,
+        serverURL: CONFIG.COMMENT_WALINE_SERVER_URL,
+        lang: CONFIG.lang,
         reaction: true,
         emoji: [
           '//npm.elemecdn.com/@waline/emojis@1.1.0/tieba',

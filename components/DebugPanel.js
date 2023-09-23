@@ -1,4 +1,4 @@
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import * as ThemeMap from '@/themes'
 import { useEffect, useState } from 'react'
 import Select from './Select'
@@ -13,15 +13,15 @@ export function DebugPanel() {
   const { theme, changeTheme, switchTheme, locale } = useGlobal()
   const [siteConfig, updateSiteConfig] = useState({})
   const [themeConfig, updateThemeConfig] = useState({})
-  const [debugTheme, updateDebugTheme] = useState(BLOG.THEME)
+  const [debugTheme, updateDebugTheme] = useState(CONFIG.THEME)
 
   // 主题下拉框
   const themeOptions = ALL_THEME.map(t => ({ value: t, text: t }))
 
   useEffect(() => {
-    changeTheme(BLOG.THEME)
-    updateSiteConfig(Object.assign({}, BLOG))
-    updateThemeConfig(Object.assign({}, ThemeMap[BLOG.THEME].THEME_CONFIG))
+    changeTheme(CONFIG.THEME)
+    updateSiteConfig(Object.assign({}, CONFIG))
+    updateThemeConfig(Object.assign({}, ThemeMap[CONFIG.THEME].THEME_CONFIG))
   }, [])
 
   function toggleShow() {
@@ -108,7 +108,7 @@ export function DebugPanel() {
                         </div>
                     </div>
                     <div className="font-bold w-18 border-b my-2">
-                        站点配置[blog.config.js]
+                        站点配置[CONFIG.config.js]
                     </div>
                     <div className="text-xs">
                         {siteConfig && Object.keys(siteConfig).map(k => (

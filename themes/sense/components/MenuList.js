@@ -1,6 +1,6 @@
 import { useGlobal } from '@/lib/global'
 import CONFIG from '../config'
-import BLOG from '@/config'
+import SITE_CONFIG from '@/config'
 import { MenuItemDrop } from './MenuItemDrop'
 import { MenuItemCollapse } from './MenuItemCollapse'
 
@@ -21,7 +21,7 @@ export const MenuList = (props) => {
   }
 
   // 如果 开启自定义菜单，则覆盖Page生成的菜单
-  if (BLOG.CUSTOM_MENU) {
+  if (SITE_CONFIG.CUSTOM_MENU) {
     links = customMenu
   }
 

@@ -1,7 +1,7 @@
 import CommonHead from '@/components/CommonHead'
 import TopNav from './components/TopNav'
 import AsideLeft from './components/AsideLeft'
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import { useGlobal } from '@/lib/global'
 import SiteInfo from './components/SiteInfo'
 
@@ -33,7 +33,7 @@ const LayoutBase = (props) => {
     <CommonHead meta={meta} />
     <TopNav {...props} />
 
-    <div className={(BLOG.LAYOUT_SIDEBAR_REVERSE ? 'flex-row-reverse' : '') + ' flex'}>
+    <div className={(CONFIG.LAYOUT_SIDEBAR_REVERSE ? 'flex-row-reverse' : '') + ' flex'}>
       <AsideLeft {...props} />
 
       <main id='wrapper' className='relative flex flex-col items-center w-full py-8 justify-between z-10'>

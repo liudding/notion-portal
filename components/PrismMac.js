@@ -10,7 +10,7 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 
 // mermaid图
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import { isBrowser, loadExternalResource } from '@/lib/utils'
 
 /**
@@ -19,12 +19,12 @@ import { isBrowser, loadExternalResource } from '@/lib/utils'
  */
 const PrismMac = () => {
   if (isBrowser()) {
-    if (BLOG.CODE_MAC_BAR) {
+    if (CONFIG.CODE_MAC_BAR) {
       loadExternalResource('/css/prism-mac-style.css', 'css')
     }
-    loadExternalResource(BLOG.PRISM_THEME_PATH, 'css')
-    loadExternalResource(BLOG.PRISM_JS_AUTO_LOADER, 'js').then((e) => {
-      Prism.plugins.autoloader.languages_path = BLOG.PRISM_JS_PATH
+    loadExternalResource(CONFIG.PRISM_THEME_PATH, 'css')
+    loadExternalResource(CONFIG.PRISM_JS_AUTO_LOADER, 'js').then((e) => {
+      Prism.plugins.autoloader.languages_path = CONFIG.PRISM_JS_PATH
       renderPrismMac()
     })
   }
@@ -72,7 +72,7 @@ function renderPrismMac() {
   const container = document?.getElementById('container-inner')
 
   // Add line numbers
-  if (BLOG.CODE_LINE_NUMBERS === 'true') {
+  if (CONFIG.CODE_LINE_NUMBERS === 'true') {
     const codeBlocks = container?.getElementsByTagName('pre')
     if (codeBlocks) {
       Array.from(codeBlocks).forEach(item => {
@@ -106,7 +106,7 @@ function renderPrismMac() {
   }
 
   // 折叠代码行号bug
-  if (BLOG.CODE_LINE_NUMBERS === 'true') {
+  if (CONFIG.CODE_LINE_NUMBERS === 'true') {
     fixCodeLineStyle()
   }
 }

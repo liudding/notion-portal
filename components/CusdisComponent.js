@@ -1,6 +1,6 @@
 import { useGlobal } from '@/lib/global'
 import { ReactCusdis } from 'react-cusdis'
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
@@ -31,11 +31,11 @@ const CusdisComponent = ({ frontMatter }) => {
   return <ReactCusdis
     lang={locale.LOCALE.toLowerCase()}
     attrs={{
-      host: BLOG.COMMENT_CUSDIS_HOST,
-      appId: BLOG.COMMENT_CUSDIS_APP_ID,
+      host: CONFIG.COMMENT_CUSDIS_HOST,
+      appId: CONFIG.COMMENT_CUSDIS_APP_ID,
       pageId: frontMatter.id,
       pageTitle: frontMatter.title,
-      pageUrl: BLOG.LINK + router.asPath
+      pageUrl: CONFIG.LINK + router.asPath
     }}
   />
 }

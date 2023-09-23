@@ -1,4 +1,4 @@
-import BLOG from '@/config'
+import CONFIG from '@/config'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Valine from 'valine'
@@ -8,13 +8,13 @@ const ValineComponent = (props) => {
   const initValine = (url) => {
     const valine = new Valine({
       el: '#v-comments',
-      appId: BLOG.COMMENT_VALINE_APP_ID,
-      appKey: BLOG.COMMENT_VALINE_APP_KEY,
+      appId: CONFIG.COMMENT_VALINE_APP_ID,
+      appKey: CONFIG.COMMENT_VALINE_APP_KEY,
       avatar: '',
       path: url || router.asPath,
       recordIP: true,
-      placeholder: BLOG.COMMENT_VALINE_PLACEHOLDER,
-      serverURLs: BLOG.COMMENT_VALINE_SERVER_URLS,
+      placeholder: CONFIG.COMMENT_VALINE_PLACEHOLDER,
+      serverURLs: CONFIG.COMMENT_VALINE_SERVER_URLS,
       visitor: true
     })
     if (!valine) {
