@@ -1,5 +1,5 @@
 import 'gitalk/dist/gitalk.css'
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import GitalkComponent from 'gitalk/dist/gitalk-component'
 
 const Gitalk = ({ frontMatter }) => {

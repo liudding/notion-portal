@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import useAckee from 'use-ackee'
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 
 const Ackee = () => {
   const router = useRouter()

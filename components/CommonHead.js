@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import Head from 'next/head'
 
 const CommonHead = ({ meta, children }) => {

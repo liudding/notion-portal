@@ -1,6 +1,6 @@
 import { useGlobal } from '@/lib/global'
 import CONFIG from '../config'
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import { MenuItemDrop } from './MenuItemDrop'
 import { MenuItemCollapse } from './MenuItemCollapse'
 

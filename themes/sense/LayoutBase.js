@@ -1,7 +1,7 @@
 import CommonHead from '@/components/CommonHead'
 import TopNav from './components/TopNav'
 import AsideLeft from './components/AsideLeft'
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import { useGlobal } from '@/lib/global'
 import SiteInfo from './components/SiteInfo'
 

@@ -1,7 +1,7 @@
 // pages/sitemap.xml.js
 import { getServerSideSitemap } from 'next-sitemap'
 import { getGlobalNotionData } from '@/lib/notion/getNotionData'
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 
 export const getServerSideProps = async (ctx) => {
   const { allPages } = await getGlobalNotionData({ from: 'rss' })

@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import React from 'react'
 import twikoo from 'twikoo'
 

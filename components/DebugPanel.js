@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import * as ThemeMap from '@/themes'
 import { useEffect, useState } from 'react'
 import Select from './Select'

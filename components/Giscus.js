@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import { useGlobal } from '@/lib/global'
 import Giscus from '@giscus/react'
 

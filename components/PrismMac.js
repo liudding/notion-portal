@@ -10,7 +10,7 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 
 // mermaid图
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import { isBrowser, loadExternalResource } from '@/lib/utils'
 
 /**

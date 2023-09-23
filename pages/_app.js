@@ -1,4 +1,4 @@
-import BLOG from 'blog.config'
+import BLOG from '@/config'
 import React, { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 

@@ -1,5 +1,5 @@
-// 注: process.env.XX是Vercel的环境变量，配置方式见：https://docs.tangly1024.com/zh/features/personality
-const BLOG = {
+
+const CONFIG = {
   // Important page_id！！！Duplicate Template from  https://dingliu.notion.site/ab0a943569994d4dac927d51aa0babf6
   WEBSITE_NOTION_PAGE_ID: process.env.WEBSITE_NOTION_PAGE_ID || 'dd6ceea36f244c23afdd6380d1bb781b',
   LINKS_NOTION_PAGE_ID: process.env.LINKS_NOTION_PAGE_ID || '2274bcbbab7b4cd6a5b9c7b2876afda8',
@@ -183,4 +183,4 @@ const BLOG = {
   VERSION: process.env.NEXT_PUBLIC_VERSION // 版本号
 }
 
-module.exports = BLOG
+module.exports = CONFIG

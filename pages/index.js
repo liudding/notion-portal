@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import { getPostBlocks } from '@/lib/notion'
 import { getGlobalNotionData, getGloablNotionCollectionData } from '@/lib/notion/getNotionData'
 import * as ThemeMap from '@/themes'

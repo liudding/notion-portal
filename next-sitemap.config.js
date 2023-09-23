@@ -1,4 +1,4 @@
-const BLOG = require('./blog.config')
+const BLOG = require('./config')
 
 module.exports = {
   siteUrl: BLOG.LINK,

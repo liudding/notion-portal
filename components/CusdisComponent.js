@@ -1,6 +1,6 @@
 import { useGlobal } from '@/lib/global'
 import { ReactCusdis } from 'react-cusdis'
-import BLOG from '@/blog.config'
+import BLOG from '@/config'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
