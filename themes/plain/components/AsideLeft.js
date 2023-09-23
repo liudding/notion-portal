@@ -9,7 +9,7 @@ function AsideLeft(props) {
         <div className="w-full h-8 bg-gradient-to-b from-white dark:from-slate-900"></div>
       </div>
 
-      <section className='flex flex-col text-gray-600 my-8' style={{height: 2000}}>
+      <section className='flex flex-col text-gray-600 my-8'>
         <LinkMenuList {...props} />
       </section>
     </nav>

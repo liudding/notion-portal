@@ -1,11 +1,11 @@
 /**
- * 切换主题请修改 blog.config.js 中的 THEME 字段
+ * 切换主题请修改 config.js 中的 THEME 字段
  */
-import * as sense from './sense'
+import * as plain from './plain'
 
 export const ALL_THEME = [
-  'sense'
+  'plain'
 ]
 export {
-  sense
+  plain
 }
