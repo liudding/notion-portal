@@ -17,24 +17,22 @@ const ListPage = ({ links = [], categories }) => {
   }
 
   return (
-    <div>
-      <div id="container" className=''>
-        {categories?.map(category => {
-          return (
-            <Scroll.Element name={category.id} key={category.id}>
-              {category.children.map((sub) => (<Scroll.Element name={sub.id} key={sub.id} >
-                <div className='py-4 mt-8 pl-2 font-bold text-gray-500'>{sub.title}</div>
-                <div className='grid gap-8 grid-cols-5'>
-                  {sub.children.map(item => (
-                    <LinkCard link={item} key={item.id}></LinkCard>
-                  ))}
-                </div>
-              </Scroll.Element>))}
-            </Scroll.Element>
-          )
-        })}
-      </div>
-    </div >
+    <div id="container" className='px-8'>
+      {categories?.map(category => {
+        return (
+          <Scroll.Element name={category.id} key={category.id}>
+            {category.children.map((sub) => (<Scroll.Element name={sub.id} key={sub.id} >
+              <div className='py-4 mt-8 pl-2 font-bold text-gray-500'>{sub.title}</div>
+              <div className='grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 lg:grid-cols-4 xl:gap-x-8'>
+                {sub.children.map(item => (
+                  <LinkCard link={item} key={item.id}></LinkCard>
+                ))}
+              </div>
+            </Scroll.Element>))}
+          </Scroll.Element>
+        )
+      })}
+    </div>
   )
 }
 

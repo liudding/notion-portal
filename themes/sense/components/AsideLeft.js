@@ -2,15 +2,17 @@ import Logo from './Logo'
 import { LinkMenuList } from './LinkMenuList'
 
 function AsideLeft(props) {
-  return <div className='relative dark:bg-hexo-black-gray min-h-screen py-14 border-r border-gray-200 hidden lg:block z-20' >
-    <div style={{ width: 260 }}></div>
-    <div className='fixed top-0 left-0 px-5 py-14 h-full' style={{ width: 260 }}>
-      <Logo {...props} />
+  return <div className='hidden lg:block fixed z-20 inset-0 top-[1rem] left-[max(0px,calc(50%-45rem))] right-auto w-[15rem] pb-10 pl-8 pr-6 overflow-y-auto'>
+    <nav className='lg:text-sm lg:leading-6 relative'>
+      <div className='sticky top-0 -ml-0.5 pointer-events-none w-full'>
+        <Logo {...props} />
+        <div className="w-full h-8 bg-gradient-to-b from-white dark:from-slate-900"></div>
+      </div>
 
       <section className='flex flex-col text-gray-600 my-8' style={{height: 2000}}>
         <LinkMenuList {...props} />
       </section>
-    </div>
+    </nav>
   </div>
 }
 

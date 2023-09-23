@@ -1,7 +1,7 @@
 import CommonHead from '@/components/CommonHead'
 import TopNav from './components/TopNav'
 import AsideLeft from './components/AsideLeft'
-import CONFIG from '@/config'
+import SITE_CONFIG from '@/config'
 import { useGlobal } from '@/lib/global'
 import SiteInfo from './components/SiteInfo'
 
@@ -33,17 +33,16 @@ const LayoutBase = (props) => {
     <CommonHead meta={meta} />
     <TopNav {...props} />
 
-    <div className={(CONFIG.LAYOUT_SIDEBAR_REVERSE ? 'flex-row-reverse' : '') + ' flex'}>
+    <div className={(SITE_CONFIG.LAYOUT_SIDEBAR_REVERSE ? 'flex-row-reverse' : '') + ' flex'}>
       <AsideLeft {...props} />
 
-      <main id='wrapper' className='relative flex flex-col items-center w-full py-8 justify-between z-10'>
-        <div id='container-inner' className='2xl:max-w-6xl md:max-w-4xl w-full relative'>
-          <div> {headerSlot} </div>
+      <main id='wrapper' className='relative flex flex-col items-center w-full py-8 justify-between lg:pl-[16rem]'>
+        <div id='container-inner' className='w-full relative'>
+          { headerSlot && <div> {headerSlot} </div>}
           <div> {onLoading ? LoadingCover : children} </div>
         </div>
         <SiteInfo></SiteInfo>
       </main>
-
     </div>
 
   </div>)

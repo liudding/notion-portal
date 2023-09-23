@@ -28,7 +28,7 @@ const LinkCard = ({ link }) => {
   }
 
   return (
-    <Link href={link.URL || ''} target='_blank' className='grid-item  bg-white rounded-md p-2 bg-white' style={{ breakInside: 'avoid', height: 180, boxShadow: '0 0px 6px 3px rgb(0 0 0 / 0.1), 0 0px 0px -1px rgb(0 0 0 / 0.1)' }} key={link.id}>
+    <Link href={link.URL || ''} target='_blank' className='group relative bg-white rounded-md p-3 bg-white hover:bg-gray-50' style={{ breakInside: 'avoid', boxShadow: '0 0px 6px 3px rgb(0 0 0 / 0.1), 0 0px 0px -1px rgb(0 0 0 / 0.1)' }} key={link.id}>
       <div className='p-1' style={{ height: 60 }}>
         <LinkIcon link={link}></LinkIcon>
       </div>
@@ -42,7 +42,7 @@ const LinkCard = ({ link }) => {
       </div>
 
       <div style={{ height: 40 }} className='px-2'>
-        <div className='line-clamp-1 text-xs text-gray-400'>{link.desc}</div>
+        <div className='line-clamp-2 text-xs text-gray-400'>{link.desc}</div>
       </div>
 
     </Link>

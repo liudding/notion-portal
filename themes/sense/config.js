@@ -1,4 +1,4 @@
-const FUKA_CONFIG = {
+const CONFIG = {
     // 菜单
     MENU_CATEGORY: true, // 显示分类
     MENU_TAG: true, // 显示标签
@@ -6,4 +6,4 @@ const FUKA_CONFIG = {
     MENU_SEARCH: false // 显示搜索
 
 }
-export default FUKA_CONFIG
+export default CONFIG
