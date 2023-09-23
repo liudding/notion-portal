@@ -1,8 +1,7 @@
-import { useState, useRef } from 'react'
-import Collapse from '@/components/Collapse'
-import { MenuList } from './MenuList'
+import { useState } from 'react'
+import SideBarDrawer from '@/components/SideBarDrawer'
 import Logo from './Logo'
-import SearchInput from './SearchInput'
+import { LinkMenuList } from './LinkMenuList'
 
 /**
  * 顶部导航
@@ -11,31 +10,22 @@ import SearchInput from './SearchInput'
  */
 const TopNav = props => {
   const [isOpen, changeShow] = useState(false)
-  const collapseRef = useRef(null)
 
   const toggleMenuOpen = () => {
     changeShow(!isOpen)
   }
 
-  return (<div id='top-nav' className='z-40 block lg:hidden'>
+  return (<div id='top-nav' className='sticky top-0  z-40 block lg:hidden'>
 
     {/* 导航栏 */}
-    <div id='sticky-nav' className={'relative w-full top-0 z-20 transform duration-500 bg-white dark:bg-black'}>
-      <Collapse type='vertical' isOpen={isOpen} collapseRef={collapseRef}>
-        <div className='py-1 px-5'>
-          {/* <MenuList {...props} onHeightChange={(param) => collapseRef.current?.updateCollapseHeight(param)} /> */}
-          <SearchInput {...props} />
-        </div>
-      </Collapse>
+    <div className='relative w-full top-0 z-20 transform duration-500 bg-white dark:bg-black'>
       <div className='w-full flex justify-between items-center p-4 '>
-        {/* 左侧LOGO 标题 */}
         <div className='flex flex-none flex-grow-0'>
           <Logo {...props} />
         </div>
         <div className='flex'>
         </div>
 
-        {/* 右侧功能 */}
         <div className='mr-1 flex justify-end items-center text-sm space-x-4 font-serif dark:text-gray-200'>
           <div onClick={toggleMenuOpen} className='cursor-pointer'>
             {isOpen ? <i className='fas fa-times' /> : <i className='fas fa-bars' />}
@@ -43,6 +33,14 @@ const TopNav = props => {
         </div>
       </div>
     </div>
+
+    <SideBarDrawer isOpen={isOpen} onClosed={() => { changeShow(false) }}>
+      <nav className='lg:text-sm lg:leading-6 relative px-3'>
+        <section className='flex flex-col text-gray-600 my-8'>
+          <LinkMenuList {...props} />
+        </section>
+      </nav>
+    </SideBarDrawer>
 
   </div>)
 }

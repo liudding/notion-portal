@@ -6,7 +6,7 @@ import { useEffect } from 'react'
  * @returns {JSX.Element}
  * @constructor
  */
-const SideBarDrawer = ({ children, isOpen, onOpen, onClose, className }) => {
+const SideBarDrawer = ({ children, isOpen, onOpen, onClose, onClosed, className }) => {
   const router = useRouter()
   useEffect(() => {
     const sideBarDrawerRouteListener = () => {
@@ -24,6 +24,9 @@ const SideBarDrawer = ({ children, isOpen, onOpen, onClose, className }) => {
       onOpen && onOpen()
     } else {
       onClose && onClose()
+      onClosed && setTimeout(() => {
+        onClosed()
+      }, 300)
     }
     const sideBarDrawer = window.document.getElementById('sidebar-drawer')
     const sideBarDrawerBackground = window.document.getElementById('sidebar-drawer-background')
@@ -37,7 +40,7 @@ const SideBarDrawer = ({ children, isOpen, onOpen, onClose, className }) => {
     }
   }
 
-  return <div id='sidebar-wrapper' className={' block md:hidden top-0 ' + className }>
+  return <div id='sidebar-wrapper' className={' block top-0 ' + className }>
     <div id="sidebar-drawer" className={`${isOpen ? 'ml-0 w-60 visible' : '-ml-60 max-w-side invisible'} bg-white dark:bg-gray-900 shadow-black shadow-lg flex flex-col duration-300 fixed h-full left-0 overflow-y-scroll scroll-hidden top-0 z-30`}>
       {children}
     </div>
