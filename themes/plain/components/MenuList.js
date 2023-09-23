@@ -1,11 +1,10 @@
 import { useGlobal } from '@/lib/global'
 import CONFIG from '../config'
-import SITE_CONFIG from '@/config'
 import { MenuItemDrop } from './MenuItemDrop'
 import { MenuItemCollapse } from './MenuItemCollapse'
 
 export const MenuList = (props) => {
-  const { customNav, customMenu } = props
+  const { customNav } = props
   const { locale } = useGlobal()
 
   let links = [
@@ -18,11 +17,6 @@ export const MenuList = (props) => {
 
   if (customNav) {
     links = links.concat(customNav)
-  }
-
-  // 如果 开启自定义菜单，则覆盖Page生成的菜单
-  if (SITE_CONFIG.CUSTOM_MENU) {
-    links = customMenu
   }
 
   if (!links || links.length === 0) {

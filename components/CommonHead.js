@@ -44,13 +44,13 @@ const CommonHead = ({ meta, children }) => {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:title" content={title} />
 
-      {CONFIG.COMMENT_WEBMENTION.ENABLE && (
+      {CONFIG.COMMENT_WEBMENTION && CONFIG.COMMENT_WEBMENTION.ENABLE && (
         <>
           <link rel="webmention" href={`https://webmention.io/${CONFIG.COMMENT_WEBMENTION.HOSTNAME}/webmention`} />
           <link rel="pingback" href={`https://webmention.io/${CONFIG.COMMENT_WEBMENTION.HOSTNAME}/xmlrpc`} />
         </>
       )}
-      {CONFIG.COMMENT_WEBMENTION.ENABLE && CONFIG.COMMENT_WEBMENTION.AUTH !== '' && (
+      {CONFIG.COMMENT_WEBMENTION && CONFIG.COMMENT_WEBMENTION.ENABLE && CONFIG.COMMENT_WEBMENTION.AUTH !== '' && (
         <link href={CONFIG.COMMENT_WEBMENTION.AUTH} rel="me" />
       )}
 

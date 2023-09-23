@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import * as Scroll from 'react-scroll'
 import ListEmpty from './ListEmpty'
 import LinkCard from './LinkCard'
