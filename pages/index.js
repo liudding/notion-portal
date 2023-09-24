@@ -1,6 +1,6 @@
 import CONFIG from '@/config'
 import { getPostBlocks } from '@/lib/notion'
-import { getGlobalNotionData, getGloablNotionCollectionData } from '@/lib/notion/getNotionData'
+import { getGlobalNotionData, getGlobalNotionCollectionData } from '@/lib/notion/getNotionData'
 import * as ThemeMap from '@/themes'
 import { useGlobal } from '@/lib/global'
 import { generateRobotsTxt } from '@/lib/robots.txt'
@@ -14,7 +14,7 @@ export async function getStaticProps() {
   const from = 'index'
   const props = await getGlobalNotionData({ from })
 
-  const linksCollection = await getGloablNotionCollectionData({ from, pageId: CONFIG.LINKS_NOTION_PAGE_ID })
+  const linksCollection = await getGlobalNotionCollectionData({ from, pageId: CONFIG.LINKS_NOTION_PAGE_ID })
   const { siteInfo } = props
   props.posts = props.allPages.filter(page => page.type === 'Post' && page.status === 'Published')
 

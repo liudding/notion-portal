@@ -1,7 +1,6 @@
 import * as Scroll from 'react-scroll'
 import ListEmpty from './ListEmpty'
 import LinkCard from './LinkCard'
-import Image from 'next/image'
 
 /**
  * 列表页

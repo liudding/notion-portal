@@ -1,23 +1,14 @@
 import CommonHead from '@/components/CommonHead'
 import TopNav from './components/TopNav'
 import AsideLeft from './components/AsideLeft'
-import SITE_CONFIG from '@/config'
 import { useGlobal } from '@/lib/global'
-import SiteInfo from './components/SiteInfo'
+import SiteFooter from './components/SiteFooter'
 
 /**
  * 基础布局 采用左右两侧布局，移动端使用顶部导航栏
- * @param children
- * @param layout
- * @param tags
- * @param meta
- * @param post
- * @param currentSearch
- * @param currentCategory
- * @param currentTag
- * @param categories
  * @returns {JSX.Element}
  * @constructor
+ * @param props
  */
 const LayoutBase = (props) => {
   const {
@@ -55,7 +46,7 @@ const LayoutBase = (props) => {
           {headerSlot && <div> {headerSlot} </div>}
           <div> {onLoading ? LoadingCover : children} </div>
         </div>
-        <SiteInfo></SiteInfo>
+        <SiteFooter ></SiteFooter>
       </main>
     </div>
 
