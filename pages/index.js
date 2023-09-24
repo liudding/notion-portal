@@ -1,5 +1,5 @@
 import CONFIG from '@/config'
-import { getPostBlocks } from '@/lib/notion'
+import { getBlocksOfPage } from '@/lib/notion'
 import { getGlobalNotionData, getGlobalNotionCollectionData } from '@/lib/notion/getNotionData'
 import * as ThemeMap from '@/themes'
 import { useGlobal } from '@/lib/global'
@@ -12,7 +12,7 @@ const Index = props => {
 
 export async function getStaticProps() {
   const from = 'index'
-  const props = await getGlobalNotionData({ from })
+  const props = await getGlobalNotionData({ pageId: CONFIG.WEBSITE_NOTION_PAGE_ID, from })
 
   const linksCollection = await getGlobalNotionCollectionData({ from, pageId: CONFIG.LINKS_NOTION_PAGE_ID })
   const { siteInfo } = props
@@ -39,7 +39,7 @@ export async function getStaticProps() {
       if (post.password && post.password !== '') {
         continue
       }
-      post.blockMap = await getPostBlocks(post.id, 'slug', CONFIG.POST_PREVIEW_LINES)
+      post.blockMap = await getBlocksOfPage(post.id, CONFIG.POST_PREVIEW_LINES)
     }
   }
 

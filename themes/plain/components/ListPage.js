@@ -4,9 +4,6 @@ import LinkCard from './LinkCard'
 
 /**
  * 列表页
- * @param page 当前页
- * @param posts 所有文章
- * @param tags 所有标签
  * @returns {JSX.Element}
  * @constructor
  */
