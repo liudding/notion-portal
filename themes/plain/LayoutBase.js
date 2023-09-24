@@ -20,25 +20,39 @@ import SiteInfo from './components/SiteInfo'
  * @constructor
  */
 const LayoutBase = (props) => {
-  const { children, headerSlot, meta } = props
+  const {
+    children,
+    headerSlot,
+    meta,
+    siteInfo
+  } = props
   const { onLoading } = useGlobal()
 
-  const LoadingCover = <div id='cover-loading' className={`${onLoading ? 'z-50 opacity-50' : '-z-10 opacity-0'} pointer-events-none transition-all duration-300`}>
-    <div className='w-full h-screen flex justify-center items-center'>
-      <i className="fa-solid fa-spinner text-2xl text-black dark:text-white animate-spin">  </i>
+  const LoadingCover = <div id="cover-loading"
+                            className={`${onLoading ? 'z-50 opacity-50' : '-z-10 opacity-0'} pointer-events-none transition-all duration-300`}>
+    <div className="w-full h-screen flex justify-center items-center">
+      <i className="fa-solid fa-spinner text-2xl text-black dark:text-white animate-spin"> </i>
     </div>
   </div>
 
-  return (<div id='theme-sense' >
-    <CommonHead meta={meta} />
+  return (<div id="theme-sense">
+    <CommonHead meta={meta}/>
     <TopNav {...props} />
 
-    <div className='max-w-8xl mx-auto px-4 sm:px-6 md:px-8'>
+    <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
       <AsideLeft {...props} />
 
-      <main id='wrapper' className='relative flex flex-col items-center w-full py-8 justify-between lg:pl-[16rem]'>
-        <div id='container-inner' className='w-full relative'>
-          { headerSlot && <div> {headerSlot} </div>}
+      <main id="wrapper" className="relative flex flex-col items-center w-full justify-between lg:pl-[16rem]">
+        {siteInfo?.pageCover && <div className="w-full mt-5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={siteInfo?.pageCover} style={{
+            height: '20vh',
+            width: '100%'
+          }} alt="" className="object-cover rounded"/>
+        </div>}
+
+        <div id="container-inner" className="w-full relative pb-8">
+          {headerSlot && <div> {headerSlot} </div>}
           <div> {onLoading ? LoadingCover : children} </div>
         </div>
         <SiteInfo></SiteInfo>
