@@ -15,7 +15,7 @@ const LinkTag = ({ tag }) => {
   const color = tagColors[tag.color]
 
   return (
-    <div className='text-xs text-white text-center px-2 py-1 mr-2 rounded-full' style={{ background: color, minWidth: 30 }}>
+    <div className='text-xs text-white text-center px-2 py-1 mr-2 rounded-full' style={{ background: color, minWidth: 20, fontSize: 10, lineHeight: '12px' }}>
       {tag.name}
     </div>
   )
