@@ -1,9 +1,10 @@
 import CONFIG from '@/config'
-import { getBlocksOfPage } from '@/lib/notion'
-import { getGlobalNotionData, getGlobalNotionCollectionData } from '@/lib/notion/getNotionData'
+import { getGlobalNotionCollectionData, getGlobalNotionData } from '@/lib/notion/getNotionData'
 import * as ThemeMap from '@/themes'
 import { useGlobal } from '@/lib/global'
 import { generateRobotsTxt } from '@/lib/robots.txt'
+import { getGlobalSettings } from '@/core/settings'
+
 const Index = props => {
   const { theme } = useGlobal()
   const ThemeComponents = ThemeMap[theme]
@@ -12,11 +13,18 @@ const Index = props => {
 
 export async function getStaticProps() {
   const from = 'index'
-  const props = await getGlobalNotionData({ pageId: CONFIG.WEBSITE_NOTION_PAGE_ID, from })
+  const props = await getGlobalNotionData({
+    pageId: CONFIG.WEBSITE_NOTION_PAGE_ID,
+    from
+  })
 
-  const linksCollection = await getGlobalNotionCollectionData({ from, pageId: CONFIG.LINKS_NOTION_PAGE_ID })
+  const settings = await getGlobalSettings()
+
+  const linksCollection = await getGlobalNotionCollectionData({
+    from,
+    pageId: CONFIG.LINKS_NOTION_PAGE_ID
+  })
   const { siteInfo } = props
-  props.posts = props.allPages.filter(page => page.type === 'Post' && page.status === 'Published')
 
   const meta = {
     title: `${siteInfo?.title} | ${siteInfo?.description}`,
@@ -25,40 +33,21 @@ export async function getStaticProps() {
     slug: '',
     type: 'website'
   }
-  // 处理分页
-  if (CONFIG.POST_LIST_STYLE === 'scroll') {
-    // 滚动列表默认给前端返回所有数据
-  } else if (CONFIG.POST_LIST_STYLE === 'page') {
-    props.posts = props.posts?.slice(0, CONFIG.POSTS_PER_PAGE)
-  }
-
-  // 预览文章内容
-  if (CONFIG.POST_LIST_PREVIEW === 'true') {
-    for (const i in props.posts) {
-      const post = props.posts[i]
-      if (post.password && post.password !== '') {
-        continue
-      }
-      post.blockMap = await getBlocksOfPage(post.id, CONFIG.POST_PREVIEW_LINES)
-    }
-  }
 
   // 生成robotTxt
   generateRobotsTxt()
 
-  delete props.allPages
-
-  const categories = formatToGroupTree(linksCollection.collectionData, CONFIG.LINKS_CATEGORY_LEVELS, 0)
-  props.links = linksCollection.collectionData
-  props.categories = categories
+  const categories = formatToGroupTree(linksCollection.collectionRows, settings.CATEGORY_LEVELS, 0)
 
   return {
     props: {
       meta,
-      ...props,
-      links: linksCollection.collectionData
+      siteInfo: props.siteInfo,
+      settings,
+      categories,
+      links: linksCollection.collectionRows
     },
-    revalidate: parseInt(CONFIG.NEXT_REVALIDATE_SECOND)
+    revalidate: parseInt(settings.REVALIDATE)
   }
 }
 

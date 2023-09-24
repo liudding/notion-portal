@@ -1,27 +1,38 @@
 import CONFIG from '@/config'
 import { NotionAPI } from 'notion-client'
-import { getDataFromCache, setDataToCache } from '@/lib/cache/cache_manager'
-import { deepClone, delay } from '../utils'
+import { deepClone, delay } from '@/lib/utils'
+import { getOrSetFromCache } from '@/lib/cache/cache_manager'
 
-export async function getBlocksOfPage(pageId, slice) {
-  const cacheKey = 'page_block_' + pageId
-  let pageBlock = await getDataFromCache(cacheKey)
-  if (pageBlock) {
-    console.log('[命中缓存]:', cacheKey)
-    return filterBlocks(pageBlock, slice)
-  }
-
-  const start = new Date().getTime()
-  pageBlock = await getPageWithRetry(pageId)
-  const end = new Date().getTime()
-  console.log('[API耗时]', `${end - start}ms`)
-
-  if (pageBlock) {
-    await setDataToCache(cacheKey, pageBlock)
-    return filterBlocks(pageBlock, slice)
-  }
-  return pageBlock
+export async function getNotionBlocksOfPage(pageId, slice) {
+  const cacheKey = 'notion:page_block:' + pageId
+  return await getOrSetFromCache(cacheKey, async () => {
+    const blocks = await getPageWithRetry(pageId)
+    if (!blocks) {
+      return null
+    }
+    return filterBlocks(blocks, slice)
+  })
 }
+
+// export async function getBlocksOfPage(pageId, slice) {
+//   const cacheKey = 'page_block_' + pageId
+//   let pageBlock = await getDataFromCache(cacheKey)
+//   if (pageBlock) {
+//     console.log('[命中缓存]:', cacheKey)
+//     return filterBlocks(pageBlock, slice)
+//   }
+//
+//   const start = new Date().getTime()
+//   pageBlock = await getPageWithRetry(pageId)
+//   const end = new Date().getTime()
+//   console.log('[API耗时]', `${end - start}ms`)
+//
+//   if (pageBlock) {
+//     await setDataToCache(cacheKey, pageBlock)
+//     return filterBlocks(pageBlock, slice)
+//   }
+//   return pageBlock
+// }
 
 /**
  * 调用接口，失败会重试
@@ -43,12 +54,6 @@ export async function getPageWithRetry(id, retryAttempts = 3) {
     } catch (e) {
       console.warn('[响应异常]:', e)
       await delay(1000)
-      const cacheKey = 'page_block_' + id
-      const pageBlock = await getDataFromCache(cacheKey)
-      if (pageBlock) {
-        console.log('[重试缓存]', `id:${id}`)
-        return pageBlock
-      }
       return await getPageWithRetry(id, retryAttempts - 1)
     }
   } else {
