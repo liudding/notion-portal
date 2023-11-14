@@ -5,6 +5,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
   images: {
     // 图片压缩
+    dangerouslyAllowSVG: true,
     formats: ['image/avif', 'image/webp'],
     // 允许next/image加载的图片 域名
     remotePatterns: [
