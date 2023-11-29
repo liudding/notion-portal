@@ -1,9 +1,9 @@
 import CONFIG from '@/config'
-import { getBlocksOfPage } from '@/lib/notion'
-import { getGlobalNotionData, getGlobalNotionCollectionData } from '@/lib/notion/getNotionData'
+import { getGlobalNotionCollectionData } from '@/lib/notion/getNotionData'
 import * as ThemeMap from '@/themes'
 import { useGlobal } from '@/lib/global'
 import { generateRobotsTxt } from '@/lib/robots.txt'
+import { getWebsiteConfigs } from '@/lib/datasource'
 const Index = props => {
   const { theme } = useGlobal()
   const ThemeComponents = ThemeMap[theme]
@@ -11,12 +11,14 @@ const Index = props => {
 }
 
 export async function getStaticProps() {
+  // const recordMap = getPageData({ pageId: CONFIG.WEBSITE_NOTION_PAGE_ID })
+
   const from = 'index'
-  const props = await getGlobalNotionData({ pageId: CONFIG.WEBSITE_NOTION_PAGE_ID, from })
+  // const props = await getGlobalNotionData({ pageId: CONFIG.WEBSITE_NOTION_PAGE_ID, from })
 
   const linksCollection = await getGlobalNotionCollectionData({ from, pageId: CONFIG.LINKS_NOTION_PAGE_ID })
-  const { siteInfo } = props
-  props.posts = props.allPages.filter(page => page.type === 'Post' && page.status === 'Published')
+
+  const { siteInfo } = getWebsiteConfigs(CONFIG.WEBSITE_NOTION_PAGE_ID)
 
   const meta = {
     title: `${siteInfo?.title} | ${siteInfo?.description}`,
@@ -25,28 +27,11 @@ export async function getStaticProps() {
     slug: '',
     type: 'website'
   }
-  // 处理分页
-  if (CONFIG.POST_LIST_STYLE === 'scroll') {
-    // 滚动列表默认给前端返回所有数据
-  } else if (CONFIG.POST_LIST_STYLE === 'page') {
-    props.posts = props.posts?.slice(0, CONFIG.POSTS_PER_PAGE)
-  }
-
-  // 预览文章内容
-  if (CONFIG.POST_LIST_PREVIEW === 'true') {
-    for (const i in props.posts) {
-      const post = props.posts[i]
-      if (post.password && post.password !== '') {
-        continue
-      }
-      post.blockMap = await getBlocksOfPage(post.id, CONFIG.POST_PREVIEW_LINES)
-    }
-  }
 
   // 生成robotTxt
   generateRobotsTxt()
 
-  delete props.allPages
+  // delete props.allPages
 
   const categories = formatToGroupTree(linksCollection.collectionData, CONFIG.LINKS_CATEGORY_LEVELS, 0)
 
