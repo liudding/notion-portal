@@ -1,5 +1,6 @@
 
 const CONFIG = {
+  DATASOURCE: 'notion', // notion, flowus
   // Important page_id！！！Duplicate Template from  https://dingliu.notion.site/NotionPortal-Template-354428ac80374a9d84a1890225578a0b
   WEBSITE_NOTION_PAGE_ID: process.env.WEBSITE_NOTION_PAGE_ID || '5f940aa2e51049bd9b451414041c09f5',
   LINKS_NOTION_PAGE_ID: process.env.LINKS_NOTION_PAGE_ID || '7be92035f8784e588fdfca0b264dbb2f',

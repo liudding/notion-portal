@@ -1,9 +1,9 @@
 import CONFIG from '@/config'
-import { getGlobalNotionCollectionData } from '@/lib/notion/getNotionData'
+// import { getGlobalNotionCollectionData } from '@/lib/notion/getNotionData'
 import * as ThemeMap from '@/themes'
 import { useGlobal } from '@/lib/global'
 import { generateRobotsTxt } from '@/lib/robots.txt'
-import { getWebsiteConfigs } from '@/lib/datasource'
+import { getWebsiteConfigs } from '@/lib/datasource/website'
 const Index = props => {
   const { theme } = useGlobal()
   const ThemeComponents = ThemeMap[theme]
@@ -16,9 +16,11 @@ export async function getStaticProps() {
   const from = 'index'
   // const props = await getGlobalNotionData({ pageId: CONFIG.WEBSITE_NOTION_PAGE_ID, from })
 
-  const linksCollection = await getGlobalNotionCollectionData({ from, pageId: CONFIG.LINKS_NOTION_PAGE_ID })
+  // const linksCollection = await getGlobalNotionCollectionData({ from, pageId: CONFIG.LINKS_NOTION_PAGE_ID })
 
-  const { siteInfo } = getWebsiteConfigs(CONFIG.WEBSITE_NOTION_PAGE_ID)
+  const { siteInfo } = getWebsiteConfigs()
+
+  console.log('ssss', siteInfo)
 
   const meta = {
     title: `${siteInfo?.title} | ${siteInfo?.description}`,
@@ -33,29 +35,29 @@ export async function getStaticProps() {
 
   // delete props.allPages
 
-  const categories = formatToGroupTree(linksCollection.collectionData, CONFIG.LINKS_CATEGORY_LEVELS, 0)
+  // const categories = formatToGroupTree(linksCollection.collectionData, CONFIG.LINKS_CATEGORY_LEVELS, 0)
 
-  let category1Options
-  for (const k in linksCollection.schema) {
-    if (linksCollection.schema[k].name === CONFIG.LINKS_CATEGORY_LEVELS[0]) {
-      category1Options = linksCollection.schema[k].options
-      break
-    }
-  }
-  const orderedCategories = []
-  for (const opt of category1Options) {
-    const category = categories.find(c => c.title === opt.value)
-    if (category) orderedCategories.push(category)
-  }
+  // let category1Options
+  // for (const k in linksCollection.schema) {
+  //   if (linksCollection.schema[k].name === CONFIG.LINKS_CATEGORY_LEVELS[0]) {
+  //     category1Options = linksCollection.schema[k].options
+  //     break
+  //   }
+  // }
+  // const orderedCategories = []
+  // for (const opt of category1Options) {
+  //   const category = categories.find(c => c.title === opt.value)
+  //   if (category) orderedCategories.push(category)
+  // }
 
-  props.links = linksCollection.collectionData
-  props.categories = orderedCategories
+  // props.links = linksCollection.collectionData
+  // props.categories = orderedCategories
 
   return {
     props: {
-      meta,
-      ...props,
-      links: linksCollection.collectionData
+      meta
+      // ...props,
+      // links: linksCollection.collectionData
     },
     revalidate: parseInt(CONFIG.NEXT_REVALIDATE_SECOND)
   }
