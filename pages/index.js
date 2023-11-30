@@ -11,16 +11,15 @@ const Index = props => {
 }
 
 export async function getStaticProps() {
-  const { siteInfo } = await getWebsiteConfigs()
-  const meta = {
-    title: `${siteInfo?.title} | ${siteInfo?.description}`,
-    description: siteInfo?.description || '',
-    image: siteInfo?.pageCover || null,
-    slug: '',
-    type: 'website'
-  }
+  const {
+    siteInfo,
+    meta
+  } = await getWebsiteConfigs()
 
-  console.log(siteInfo, '----------')
+  meta.title = `${siteInfo?.title} | ${siteInfo?.description}`
+  meta.description = meta.description || siteInfo?.description || ''
+  meta.image = siteInfo?.pageCover || null
+  meta.type = 'website'
 
   const links = await getLinks()
 
@@ -30,6 +29,7 @@ export async function getStaticProps() {
   return {
     props: {
       meta,
+      siteInfo,
       categories: links.categories,
       links: links.links
     },
