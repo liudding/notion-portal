@@ -5,14 +5,14 @@ import LinkTag from './LinkTag'
 const LinkIcon = ({ link }) => {
   if (link.pageIcon) {
     if (link.pageIcon.startsWith('http') || link.pageIcon.startsWith('data:')) {
-      return <Image src={link.pageIcon} width={60} height={60} className='object-contain'></Image>
+      return <Image src={link.pageIcon} width={60} height={60} className='object-contain' referrerPolicy="no-referrer"></Image>
     }
 
     return <span className=''>{link.pageIcon}</span>
   }
 
   if (link.iconfile) {
-    return <Image src={link.iconfile.url} width={60} height={60} className='object-contain'></Image>
+    return <Image src={link.iconfile.url} width={60} height={60} className='object-contain' referrerPolicy="no-referrer"></Image>
   }
 
   if (link.iconlink) {
@@ -20,7 +20,7 @@ const LinkIcon = ({ link }) => {
       link.iconlink = 'https:' + link.iconlink
     }
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={link.iconlink} className='object-contain' style={{ height: 60 }} />
+    return <img src={link.iconlink} className='object-contain' style={{ height: 60 }} referrerPolicy="no-referrer" />
   }
 
   return <div className='rounded-full text-xl font-bold text-gray-600 text-center flex items-center justify-center bg-gray-100' style={{ width: 60, height: 60 }}><div>{link.Name[0]}</div></div>

@@ -37,7 +37,25 @@ export async function getStaticProps() {
   // 生成robotTxt
   generateRobotsTxt()
 
-  const categories = formatToGroupTree(linksCollection.collectionRows, settings.CATEGORY_LEVELS, 0)
+  delete props.allPages
+
+  const categories = formatToGroupTree(linksCollection.collectionData, CONFIG.LINKS_CATEGORY_LEVELS, 0)
+
+  let category1Options
+  for (const k in linksCollection.schema) {
+    if (linksCollection.schema[k].name === CONFIG.LINKS_CATEGORY_LEVELS[0]) {
+      category1Options = linksCollection.schema[k].options
+      break
+    }
+  }
+  const orderedCategories = []
+  for (const opt of category1Options) {
+    const category = categories.find(c => c.title === opt.value)
+    if (category) orderedCategories.push(category)
+  }
+
+  props.links = linksCollection.collectionData
+  props.categories = orderedCategories
 
   return {
     props: {
