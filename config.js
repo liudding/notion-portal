@@ -1,9 +1,9 @@
 
 const CONFIG = {
-  DATASOURCE: 'notion', // notion, flowus
+  DATASOURCE: 'flowus', // notion, flowus
   // Important page_id！！！Duplicate Template from  https://dingliu.notion.site/NotionPortal-Template-354428ac80374a9d84a1890225578a0b
-  WEBSITE_NOTION_PAGE_ID: process.env.WEBSITE_NOTION_PAGE_ID || '5f940aa2e51049bd9b451414041c09f5',
-  LINKS_NOTION_PAGE_ID: process.env.LINKS_NOTION_PAGE_ID || '7be92035f8784e588fdfca0b264dbb2f',
+  WEBSITE_NOTION_PAGE_ID: process.env.WEBSITE_NOTION_PAGE_ID || '6145e45d-d8c2-470a-ad4d-1d89ab9e1924',
+  LINKS_NOTION_PAGE_ID: process.env.LINKS_NOTION_PAGE_ID || '308e1bdf-8c67-4571-a9c8-d4d55625ef2a',
   NOTION_ACCESS_TOKEN: process.env.NOTION_ACCESS_TOKEN || '', // Useful if you prefer not to make your database public
 
   LINKS_CATEGORY_LEVELS: ['category1', 'category2'],
