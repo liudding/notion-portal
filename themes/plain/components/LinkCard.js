@@ -26,9 +26,11 @@ const LinkIcon = ({ link }) => {
   return <div className='rounded-full text-xl font-bold text-gray-600 text-center flex items-center justify-center bg-gray-100' style={{ width: 60, height: 60 }}><div>{link.title}</div></div>
 }
 
-const LinkCard = ({ link }) => {
+const LinkCard = ({ link, configs }) => {
+  const url = configs.DETAIL_PAGE_ENABLED ? '/p/' + link.id : link.url || ''
+
   return (
-    <Link href={link.url || ''} target='_blank' className='group relative bg-white rounded-md p-5 bg-white hover:bg-gray-50' style={{ breakInside: 'avoid', boxShadow: '0 0px 6px 3px rgb(0 0 0 / 0.1), 0 0px 0px -1px rgb(0 0 0 / 0.1)' }} key={link.id}>
+    <Link href={url} target='_blank' className='group relative bg-white rounded-md p-5 bg-white hover:bg-gray-50' style={{ breakInside: 'avoid', boxShadow: '0 0px 6px 3px rgb(0 0 0 / 0.1), 0 0px 0px -1px rgb(0 0 0 / 0.1)' }} key={link.id}>
       <div className='p-0' style={{ height: 60 }}>
         <LinkIcon link={link}></LinkIcon>
       </div>

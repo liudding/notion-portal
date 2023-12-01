@@ -9,10 +9,11 @@ import LinkCard from './LinkCard'
  */
 const ListPage = ({
   links = [],
-  categories
+  categories,
+  configs
 }) => {
   if (!links || links.length === 0) {
-    return <ListEmpty/>
+    return <ListEmpty />
   }
 
   return (
@@ -24,7 +25,7 @@ const ListPage = ({
               <div className="py-4 mt-8 pl-2 font-bold text-gray-500">{sub.title}</div>
               <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 lg:grid-cols-4 xl:gap-x-8">
                 {sub.children.map(item => (
-                  <LinkCard link={item} key={item.id}></LinkCard>
+                  <LinkCard link={item} configs={configs} key={item.id}></LinkCard>
                 ))}
               </div>
             </Scroll.Element>))}

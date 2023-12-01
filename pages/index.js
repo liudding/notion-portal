@@ -13,7 +13,8 @@ const Index = props => {
 export async function getStaticProps() {
   const {
     siteInfo,
-    meta
+    meta,
+    configs
   } = await getWebsiteConfigs()
 
   meta.title = `${siteInfo?.title} | ${siteInfo?.description}`
@@ -28,6 +29,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      configs,
       meta,
       siteInfo,
       categories: links.categories,
