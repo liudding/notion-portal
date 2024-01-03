@@ -15,19 +15,20 @@ const LayoutBase = (props) => {
     children,
     headerSlot,
     meta,
-    siteInfo
+    siteInfo,
+    configs
   } = props
   const { onLoading } = useGlobal()
 
   const LoadingCover = <div id="cover-loading"
-                            className={`${onLoading ? 'z-50 opacity-50' : '-z-10 opacity-0'} pointer-events-none transition-all duration-300`}>
+    className={`${onLoading ? 'z-50 opacity-50' : '-z-10 opacity-0'} pointer-events-none transition-all duration-300`}>
     <div className="w-full h-screen flex justify-center items-center">
       <i className="fa-solid fa-spinner text-2xl text-black dark:text-white animate-spin"> </i>
     </div>
   </div>
 
   return (<div id="theme-sense">
-    <CommonHead meta={meta}/>
+    <CommonHead meta={meta} />
     <TopNav {...props} />
 
     <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
@@ -39,14 +40,14 @@ const LayoutBase = (props) => {
           <img src={siteInfo?.pageCover} style={{
             height: '20vh',
             width: '100%'
-          }} alt="" className="object-cover rounded"/>
+          }} alt="" className="object-cover rounded" />
         </div>}
 
         <div id="container-inner" className="w-full relative pb-8">
           {headerSlot && <div> {headerSlot} </div>}
           <div> {onLoading ? LoadingCover : children} </div>
         </div>
-        <SiteFooter ></SiteFooter>
+        <SiteFooter configs={configs}></SiteFooter>
       </main>
     </div>
 
