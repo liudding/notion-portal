@@ -1,3 +1,4 @@
+import NotionPage from '@/components/NotionPage'
 
 /**
  * 详情文章页
@@ -5,12 +6,12 @@
  * @constructor
  */
 const ArticlePage = ({
-  links = [],
-  categories
+  page,
+  configs
 }) => {
   return (
     <div id="container" className="px-8">
-      <div>hi</div>
+      <NotionPage post={page}></NotionPage>
     </div>
   )
 }
