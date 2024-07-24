@@ -47,13 +47,6 @@ const CommonScript = () => {
     </>)}
 
     {/* 代码统计 */}
-    {/* ackee统计脚本 */}
-    {CONFIG.ANALYTICS_ACKEE_TRACKER && (
-      <script async src={CONFIG.ANALYTICS_ACKEE_TRACKER}
-        data-ackee-server={CONFIG.ANALYTICS_ACKEE_DATA_SERVER}
-        data-ackee-domain-id={CONFIG.ANALYTICS_ACKEE_DOMAIN_ID}
-      />
-    )}
 
     {/* 百度统计 */}
     {CONFIG.ANALYTICS_BAIDU_ID && (

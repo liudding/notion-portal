@@ -20,7 +20,6 @@ import AOS from 'aos'
 import 'aos/dist/aos.css' // You can also use <link> for styles
 import { isMobile } from '@/lib/utils'
 
-const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
 const Busuanzi = dynamic(() => import('@/components/Busuanzi'), { ssr: false })
 const GoogleAdsense = dynamic(() => import('@/components/GoogleAdsense'), {
@@ -32,7 +31,6 @@ const MyApp = ({ Component, pageProps }) => {
   const externalPlugins = <>
     {JSON.parse(CONFIG.THEME_SWITCH) && <ThemeSwitch />}
     {JSON.parse(CONFIG.DEBUG) && <DebugPanel />}
-    {CONFIG.ANALYTICS_ACKEE_TRACKER && <Ackee />}
     {CONFIG.ANALYTICS_GOOGLE_ID && <Gtag />}
     {JSON.parse(CONFIG.ANALYTICS_BUSUANZI_ENABLE) && <Busuanzi />}
     {CONFIG.ADSENSE_GOOGLE_ID && <GoogleAdsense />}
