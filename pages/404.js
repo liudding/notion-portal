@@ -1,7 +1,6 @@
-import { getGlobalNotionData } from '@/lib/notion/getNotionData'
 import * as ThemeMap from '@/themes'
 import { useGlobal } from '@/lib/global'
-import CONFIG from '@/config'
+import { getWebsiteConfigs } from '@/lib/datasource/website'
 
 /**
  * 404
@@ -16,7 +15,7 @@ const NoFound = props => {
 }
 
 export async function getStaticProps () {
-  const props = (await getGlobalNotionData({ pageId: CONFIG.WEBSITE_NOTION_PAGE_ID, from: '404' })) || {}
+  const props = (await getWebsiteConfigs()) || {}
   return { props }
 }
 

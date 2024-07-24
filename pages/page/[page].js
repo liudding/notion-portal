@@ -1,19 +1,16 @@
-import CONFIG from '@/config'
-import { getGlobalNotionData } from '@/lib/notion/getNotionData'
 import { useGlobal } from '@/lib/global'
 import * as ThemeMap from '@/themes'
 import { getGlobalSettings } from '@/core/settings'
+import { getWebsiteConfigs } from '@/lib/datasource/website'
 
 const Page = props => {
   const { theme } = useGlobal()
-  const { siteInfo, configs } = props
-  console.log('=========', configs)
+  const { siteInfo } = props
+
   const ThemeComponents = ThemeMap[theme]
   if (!siteInfo) {
     return <></>
   }
-
-  console.log('=========', configs)
 
   const meta = {
     title: `${props.page} | Page | ${siteInfo?.title}`,
@@ -36,12 +33,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { page } }) {
-  const from = `page-${page}`
-  const props = await getGlobalNotionData({
-    pageId: CONFIG.WEBSITE_NOTION_PAGE_ID,
-    from
-  })
-
+  const props = await getWebsiteConfigs()
   const settings = await getGlobalSettings()
 
   props.page = page
