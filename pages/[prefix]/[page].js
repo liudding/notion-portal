@@ -5,7 +5,7 @@ import { getPageData } from '@/lib/datasource'
 
 const Page = props => {
   const { theme } = useGlobal()
-  const { siteInfo, configs, meta } = props
+  const { siteInfo, meta } = props
   const ThemeComponents = ThemeMap[theme]
   if (!siteInfo) {
     return <></>
