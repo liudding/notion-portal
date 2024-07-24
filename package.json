@@ -1,16 +1,15 @@
 {
   "name": "notion-next",
   "version": "3.13.3",
-  "homepage": "https://github.com/tangly1024/NotionNext.git",
+  "homepage": "https://github.com/liudding/notion-portal.git",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tangly1024/NotionNext.git"
+    "url": "https://github.com/liudding/notion-portal.git"
   },
   "author": {
-    "name": "tangly",
-    "email": "mail@tangly1024.com",
-    "url": "http://tangly1024.com"
+    "name": "liuding",
+    "email": "liuding@foxmail.com"
   },
   "scripts": {
     "dev": "next dev",
@@ -38,8 +37,8 @@
     "mermaid": "9.2.2",
     "mongodb": "^4.6.0",
     "next": "^13.1.1",
-    "notion-client": "6.15.6",
-    "notion-utils": "6.15.6",
+    "notion-client": "^6.16.0",
+    "notion-utils": "^6.16.0",
     "nprogress": "^0.2.0",
     "preact": "^10.5.15",
     "prism-themes": "1.9.0",
@@ -77,9 +76,5 @@
   },
   "resolutions": {
     "axios": ">=0.21.1"
-  },
-  "bugs": {
-    "url": "https://github.com/tangly/NotionNext/issues",
-    "email": "tlyong1992@hotmail.com"
   }
 }

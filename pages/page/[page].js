@@ -6,11 +6,15 @@ import { getGlobalSettings } from '@/core/settings'
 
 const Page = props => {
   const { theme } = useGlobal()
-  const { siteInfo } = props
+  const { siteInfo, configs } = props
+  console.log('=========', configs)
   const ThemeComponents = ThemeMap[theme]
   if (!siteInfo) {
     return <></>
   }
+
+  console.log('=========', configs)
+
   const meta = {
     title: `${props.page} | Page | ${siteInfo?.title}`,
     description: siteInfo?.description,
@@ -18,7 +22,7 @@ const Page = props => {
     slug: 'page/' + props.page,
     type: 'website'
   }
-  return <ThemeComponents.LayoutPage {...props} meta={meta}/>
+  return <ThemeComponents.LayoutPage {...props} meta={meta} />
 }
 
 export async function getStaticPaths() {
